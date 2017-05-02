@@ -1,0 +1,39 @@
+.home {
+  background: url('../../assets/images/quiz_sb.jpg');
+  background-size: cover;
+  color: #fff;
+  padding: 80px 0;
+  text-align: center;
+  width: 100%;
+}
+
+.home h1 {
+  font-size: 60px;
+  margin: 0 0 20px 0;
+}
+
+.home h2 {
+  margin: 0 0 30px 0;
+  font-size: 30px;
+}
+
+.home a {
+  color: #ff4081;
+}
+
+.columns {
+  display: flex;
+  flex-direction: row;
+  padding: 50px 20px;
+}
+
+.column {
+  flex: 1;
+  text-align: center;
+}
+
+.column md-icon {
+  font-size: 40px;
+  height: 40px;
+  width: 40px;
+}

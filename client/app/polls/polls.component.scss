@@ -1,0 +1,28 @@
+ul {
+  list-style: none;
+}
+
+li {
+  background: #fff;
+  border: 1px solid #eee;
+  padding: 3px 6px;
+}
+
+md-card:last-child {
+  margin-bottom: 40px;
+}
+
+md-card {
+  cursor: pointer;
+}
+
+.center-container {
+  position: relative;
+}
+
+[md-fab] {
+  position: absolute;
+  right: 20px;
+  bottom: -25px;
+  font-size: 20px;
+}

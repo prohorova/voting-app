@@ -1,0 +1,25 @@
+<div class="container">
+  <h1 class="title">{{poll.title}}</h1>
+
+  <div class="center-container">
+    <div class="poll-wrapper">
+      <div class="poll">
+        <md-select placeholder="Choose an option">
+          <md-option *ngFor="let option of poll.options" value="option.id">{{option.value}}</md-option>
+        </md-select>
+
+        <span class="own-version">or vote with</span>
+
+        <md-input-container>
+          <input mdInput type="text"  placeholder="your own version">
+        </md-input-container>
+
+      </div>
+      <button md-raised-button color="primary">Vote</button>
+    </div>
+
+    <div class="chart">
+      <app-chart [data]="poll.options"></app-chart>
+    </div>
+  </div>
+</div>

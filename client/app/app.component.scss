@@ -1,0 +1,25 @@
+md-content{
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.main {
+  flex: 1;
+}
+
+footer {
+  background: #374147;
+  color: #ccc;
+  flex: 0 0 40px;
+  text-align: center;
+  line-height: 40px;
+}
+
+footer a {
+  color: #fff;
+}
+
+footer md-icon {
+  padding: 8px 0;
+}

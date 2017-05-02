@@ -30,6 +30,7 @@
     "@angular/router": "^4.0.0",
     "body-parser": "^1.17.1",
     "core-js": "^2.4.1",
+    "d3": "^4.8.0",
     "express": "^4.15.2",
     "mongoose": "^4.9.1",
     "morgan": "^1.8.1",
@@ -39,6 +40,7 @@
   "devDependencies": {
     "@angular/cli": "1.0.0",
     "@angular/compiler-cli": "^4.0.0",
+    "@types/d3": "^4.7.0",
     "@types/jasmine": "2.5.38",
     "@types/node": "~6.0.60",
     "codelyzer": "~2.0.0",

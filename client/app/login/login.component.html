@@ -1,0 +1,17 @@
+<div class="center-container">
+  <h1 class="title">{{this.loggingIn ? 'Login' : 'Register'}}</h1>
+  <form>
+    <md-input-container *ngIf="!this.loggingIn">
+      <input mdInput type="text"  placeholder="Name">
+    </md-input-container>
+    <md-input-container>
+      <input mdInput type="email"  placeholder="Email">
+    </md-input-container>
+    <md-input-container>
+      <input mdInput type="password"  placeholder="Password">
+    </md-input-container>
+    <button type="submit" md-raised-button color="accent">{{loggingIn ? "Login" : "Register"}}</button>
+    <button type="primary" md-button color="accent" (click)="togglePage()">{{loggingIn ? "Register" : "Login"}}</button>
+  </form>
+</div>
+

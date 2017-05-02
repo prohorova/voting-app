@@ -1,0 +1,41 @@
+.poll-wrapper {
+  margin-bottom: 20px;
+}
+
+.poll md-select, .own-version {
+  margin-right: 10px;
+}
+
+.select-label {
+  display: inline-block;
+  line-height: 30px;
+}
+
+.poll {
+  display: flex;
+  align-items: baseline;
+  flex-wrap: nowrap;
+}
+
+.poll md-input-container, .poll md-select {
+  flex: 1;
+}
+
+.poll-wrapper button {
+  width: 100%;
+}
+
+@media (max-width: 768px) {
+  .poll {
+    display: block;
+  }
+  .poll md-input-container, .poll md-select, .poll button  {
+    width: 100%;
+  }
+  .own-version {
+    display: block;
+    margin-top: 10px;
+  }
+}
+
+

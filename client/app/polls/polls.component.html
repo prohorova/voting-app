@@ -1,0 +1,12 @@
+<div class="container">
+  <h1 class="title">Polls</h1>
+  <div class="center-container">
+    <md-card *ngFor="let poll of polls" routerLink="/poll/{{poll.id}}">
+      <md-card-title>{{poll.title}}</md-card-title>
+    </md-card>
+    <button md-fab mdTooltip="Add new poll" mdTooltipPosition="above" routerLink="/edit">
+      +
+    </button>
+  </div>
+
+</div>

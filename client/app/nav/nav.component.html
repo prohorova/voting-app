@@ -1,0 +1,12 @@
+<md-toolbar color="primary">
+  <a routerLink="/"><span class="brand" >VotingApp</span></a>
+  <button md-button routerLink="/polls">Polls</button>
+  <button md-button routerLink="/edit">New poll</button>
+  <span class="fill"></span>
+  <button md-button [routerLink]="['/login', {loggingIn: true}]">
+    Login
+  </button>
+  <button md-button [routerLink]="['/login', {loggingIn: false}]">
+    Sign up
+  </button>
+</md-toolbar>
