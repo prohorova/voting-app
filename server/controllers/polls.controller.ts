@@ -19,7 +19,7 @@ export default class PollsController {
   };
 
   delete = (req, res) => {
-    Poll.find({id: req.params.id}).remove(function(err) {
+    req.poll.remove((err) => {
       if (err) return res.status(500).send(err);
       res.send(200);
     })
@@ -57,6 +57,7 @@ export default class PollsController {
       if (poll.createdBy !== req.user.id) {
         res.status(403).send({message: 'User is not authorized'})
       }
+      req.poll = poll;
       next();
     })
   }
