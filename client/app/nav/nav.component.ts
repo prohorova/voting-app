@@ -25,4 +25,8 @@ export class NavComponent implements OnInit {
     })
   }
 
+  getUserId() {
+    return this.auth.getUserId();
+  }
+
 }

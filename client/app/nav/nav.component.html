@@ -13,9 +13,9 @@
     <md-icon>more_vert</md-icon>
   </button>
   <md-menu #menu="mdMenu">
-    <button md-menu-item routerLink="/create">
-      <md-icon>add_circle</md-icon>
-      <span>Create poll</span>
+    <button md-menu-item [routerLink]="['/polls', {id: getUserId()}]">
+      <md-icon>done_all</md-icon>
+      <span>My polls</span>
     </button>
     <button md-menu-item (click)="logout()">
       <md-icon>exit_to_app</md-icon>

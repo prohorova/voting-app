@@ -10,7 +10,7 @@
     <md-input-container>
       <input mdInput type="password"  placeholder="Password" [formControl]="userForm.controls['password']">
     </md-input-container>
-    <button type="submit" md-raised-button color="accent" [disabled]="!userForm.valid">Register</button>
+    <button type="submit" md-raised-button color="primary" [disabled]="!userForm.valid">Register</button>
     <button type="button" md-button color="accent" routerLink="/login">Login</button>
   </form>
 </div>

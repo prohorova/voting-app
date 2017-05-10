@@ -12,12 +12,12 @@
             <input mdInput formControlName="value" placeholder={{getOptionName(i)}}>
           </md-input-container>
           <button *ngIf="i > 1" type="button" class="remove" md-icon-button (click)="removeOption(i)">
-            <md-icon>delete</md-icon>
+            <md-icon>clear</md-icon>
           </button>
         </div>
       </div>
       <button type="button" md-button color="accent" class="add" (click)="addOption()">Add option</button>
-      <button type="submit" md-raised-button color="accent" [disabled]="!pollForm.valid">Submit</button>
+      <button type="submit" md-raised-button color="primary" [disabled]="!pollForm.valid">Submit</button>
     </form>
   </div>
 </div>
