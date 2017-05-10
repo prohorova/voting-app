@@ -49,8 +49,8 @@ export class CreateComponent implements OnInit {
   }
 
   submit(poll) {
-    this.polls.create(poll).subscribe(() => {
-      this.router.navigate(['/polls']);
+    this.polls.create(poll).subscribe((poll: any) => {
+      this.router.navigate([`/polls/${poll._id}`]);
     }, (error) => {
       this.toastr.error(error);
     })
