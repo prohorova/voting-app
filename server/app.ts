@@ -7,7 +7,6 @@ import * as session from 'express-session';
 import * as cookieParser from 'cookie-parser';
 import * as passport from 'passport';
 import * as connectMongo from 'connect-mongo';
-import * as cors from 'cors';
 
 import config from './config/config';
 import setPassport from './config/passport';
@@ -43,8 +42,6 @@ app.use(session({
 setPassport();
 app.use(passport.initialize());
 app.use(passport.session());
-
-// app.use(cors());
 
 db.on('error', console.error.bind(console, 'connection error:'));
 db.once('open', () => {
