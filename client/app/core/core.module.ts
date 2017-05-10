@@ -4,6 +4,8 @@ import { HttpModule } from '@angular/http';
 
 import { AuthService } from './auth.service';
 import { PollsService } from './polls.service';
+import { AuthGuardService } from './auth-guard.service';
+import { UnauthGuardService } from './unauth-guard.service';
 
 @NgModule({
   imports: [
@@ -11,6 +13,11 @@ import { PollsService } from './polls.service';
     HttpModule
   ],
   declarations: [],
-  providers: [AuthService, PollsService]
+  providers: [
+    AuthService,
+    PollsService,
+    AuthGuardService,
+    UnauthGuardService
+  ]
 })
 export class CoreModule { }

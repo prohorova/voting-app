@@ -6,15 +6,37 @@ import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { PollComponent } from './poll/poll.component';
 import { CreateComponent } from './create/create.component';
+import { AuthGuardService } from './core/auth-guard.service';
+import { UnauthGuardService } from './core/unauth-guard.service';
 
 const routes: Routes = [
-  {path: '', component: HomeComponent},
-  {path: 'polls', component: PollsComponent},
-  {path: 'login', component: LoginComponent},
-  {path: 'register', component: RegisterComponent},
-  {path: 'create', component: CreateComponent},
-  {path: 'create/:id', component: CreateComponent},
-  {path: 'polls/:id', component: PollComponent}
+  {
+    path: '',
+    component: HomeComponent
+  },
+  {
+    path: 'polls',
+    component: PollsComponent
+  },
+  {
+    path: 'login',
+    component: LoginComponent,
+    canActivate: [UnauthGuardService]
+  },
+  {
+    path: 'register',
+    component: RegisterComponent,
+    canActivate: [UnauthGuardService]
+  },
+  {
+    path: 'create',
+    component: CreateComponent,
+    canActivate: [AuthGuardService]
+  },
+  {
+    path: 'polls/:id',
+    component: PollComponent
+  }
 ];
 
 @NgModule({
@@ -22,4 +44,5 @@ const routes: Routes = [
   exports: [ RouterModule ]
 })
 
-export class AppRoutingModule {}
+export class AppRoutingModule {
+}
