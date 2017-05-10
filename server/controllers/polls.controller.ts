@@ -3,9 +3,17 @@ import Poll from '../models/poll.model';
 export default class PollsController {
 
   list = (req, res) => {
-    Poll.find({}, (err, polls) => {
+    Poll.find({}).populate('createdBy', 'name').exec((err, polls) => {
       if (err) return res.status(500).send(err);
       res.send(polls);
+    })
+  };
+
+  get = (req, res) => {
+    Poll.findById(req.params.id).exec((err, poll) => {
+      if (err) return res.status(500).send(err);
+      if (!poll) return res.status(500).send({message: 'Poll doesn\'t exist'});
+      res.send(poll);
     })
   };
 
@@ -26,22 +34,33 @@ export default class PollsController {
   };
 
   vote = (req, res) => {
-    Poll.find({id: req.params.pollId}, (err, poll) => {
+    const option = req.body;
+    Poll.findById(req.params.pollId, (err, poll) => {
       if (err) return res.status(500).send(err);
-      const option = poll.options.id(req.params.optionId);
-      option.votes++;
+      if (option.id) {
+        const optionToVote = poll.options.id(option.id);
+        optionToVote.votes++;
+      } else {
+        poll.options.create({value: option.value, votes: 1});
+      }
+      if (req.user) {
+        poll.users.push(req.user.id);
+      }
       poll.save((err) => {
         if (err) return res.status(500).send(err);
-        return res.send();
+        return res.send(poll);
       })
     })
   };
 
   canVote = (req, res, next) => {
     if (req.user) {
-      Poll.find({id: req.params.pollId}, (err, poll) => {
+      Poll.findById(req.params.pollId, (err, poll) => {
         if (err) return res.status(500).send(err);
-        if (req.user.id in poll.users) {
+        const alreadyVoted = poll.users.some((user => {
+          return user.equals(req.user.id);
+        }));
+        if (alreadyVoted) {
           return res.status(403).send({message: 'You already voted'});
         }
         return next();
@@ -51,7 +70,7 @@ export default class PollsController {
     }
   };
 
-  hasRights = (req, res, next) => {
+  canDelete = (req, res, next) => {
     Poll.find({id: req.params.id}, function(err, poll) {
       if (err) return res.status(500).send(err);
       if (poll.createdBy !== req.user.id) {

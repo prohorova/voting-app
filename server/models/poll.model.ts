@@ -3,7 +3,7 @@ import * as mongoose from 'mongoose';
 const Schema = mongoose.Schema;
 
 const OptionSchema = new Schema({
-  value: String,
+  value: {type: String, required: true},
   votes: {type: Number, default: 0}
 });
 

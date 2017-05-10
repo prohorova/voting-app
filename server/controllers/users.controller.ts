@@ -10,7 +10,7 @@ export default class UsersController {
         if (!user) { return res.status(401).send(info); }
         req.logIn(user, function(err) {
           if (err) { return next(err); }
-          return res.send(user.toJSON());
+          return res.send({_id: user._id, name: user.name, email: user.email});
         });
       })(req, res, next);
     } else {
@@ -20,21 +20,16 @@ export default class UsersController {
 
   register = (req, res) => {
     if (!req.user) {
+      const name = req.body.name;
       const email = req.body.email;
       const password = req.body.password;
-      if (!email) {
-        return res.status(400).send({message: 'Email is required'});
-      }
-      if (!password) {
-        return res.status(400).send({message: 'Password is required'});
-      }
       User.findOne({email}, (err, user) => {
         if (err) return res.status(500).send(err);
         if (user) {
-          return res.status(409).send({message: 'User already exists'});
+          return res.status(409).send({message: 'User with this email already exists'});
         }
 
-        const newUser = new User({email});
+        const newUser = new User({name, email});
         newUser.setPassword(password);
         newUser.provider = 'local';
         newUser.save((err) => {
@@ -42,7 +37,7 @@ export default class UsersController {
 
           req.logIn(newUser, (err) => {
             if (err) return res.status(500).send(err);
-            return res.send({id: newUser._id, email: newUser.email});
+            return res.send({_id: newUser._id, name: newUser.name, email: newUser.email});
           })
         })
       });
@@ -57,7 +52,7 @@ export default class UsersController {
   };
 
   isAuthenticated = (req, res, next) => {
-    if (!req.isAuthenticated()) {
+    if (!req.user) {
       return res.status(403).send({message: 'User is not logged in'});
     }
     next();

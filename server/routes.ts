@@ -14,16 +14,17 @@ export default function setRoutes(app) {
   // polls
   app.route('/api/polls')
     .get(pollsController.list)
-    .post(usersController.isAuthenticated, pollsController.create);
+    .post(pollsController.create);
 
   app.route('/api/polls/:id')
+    .get(pollsController.get)
     .delete(usersController.isAuthenticated,
-      pollsController.hasRights,
+      pollsController.canDelete,
       pollsController.delete
     );
 
-  app.route('/api/:pollId/:optionId')
-    .get(pollsController.canVote,
+  app.route('/api/polls/vote/:pollId/')
+    .post(pollsController.canVote,
       pollsController.vote
     );
 

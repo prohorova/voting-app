@@ -4,8 +4,10 @@ import * as morgan from 'morgan';
 import * as mongoose from 'mongoose';
 import * as path from 'path';
 import * as session from 'express-session';
+import * as cookieParser from 'cookie-parser';
 import * as passport from 'passport';
 import * as connectMongo from 'connect-mongo';
+import * as cors from 'cors';
 
 import config from './config/config';
 import setPassport from './config/passport';
@@ -18,10 +20,14 @@ app.set('port', (process.env.PORT || 3000));
 
 app.use('/', express.static(path.join(__dirname, '../public')));
 
+app.use(cookieParser());
+
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
 app.use(morgan('dev'));
+
+
 
 mongoose.connect(config.db);
 const db = mongoose.connection;
@@ -34,9 +40,11 @@ app.use(session({
   store: new MongoStore({mongooseConnection: db})
 }));
 
+setPassport();
 app.use(passport.initialize());
 app.use(passport.session());
-setPassport();
+
+app.use(cors());
 
 db.on('error', console.error.bind(console, 'connection error:'));
 db.once('open', () => {
