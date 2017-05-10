@@ -14,9 +14,9 @@
           </md-option>
         </md-select>
 
-        <span class="own-version">or vote with</span>
+        <span *ngIf="canCreateCustomOption()" class="own-version">or vote with</span>
 
-        <md-input-container>
+        <md-input-container *ngIf="canCreateCustomOption()">
           <input mdInput type="text"
                  placeholder="your own version"
                  [formControl]="voteForm.controls['newOption']">

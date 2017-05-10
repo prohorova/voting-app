@@ -77,6 +77,10 @@ export class PollComponent implements OnInit, OnDestroy {
     return false;
   }
 
+  canCreateCustomOption() {
+    return this.auth.isLoggedIn();
+  }
+
   delete(poll) {
     this.polls.delete(poll._id)
       .subscribe(() => {
@@ -97,7 +101,7 @@ export class PollComponent implements OnInit, OnDestroy {
     if (vote.option) {
       option = {id: vote.option};
     } else {
-      option = {value: vote.option};
+      option = {value: vote.newOption};
     }
     this.polls.vote(this.poll._id, option).subscribe((poll) => {
       this.poll = poll;

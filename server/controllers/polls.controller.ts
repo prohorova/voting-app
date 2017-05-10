@@ -41,7 +41,7 @@ export default class PollsController {
         const optionToVote = poll.options.id(option.id);
         optionToVote.votes++;
       } else {
-        poll.options.create({value: option.value, votes: 1});
+        poll.options.push({value: option.value, votes: 1});
       }
       if (req.user) {
         poll.users.push(req.user.id);
@@ -74,8 +74,6 @@ export default class PollsController {
     if (!req.user) return res.status(403).send({message: 'User is not authorized'});
     Poll.findById(req.params.id).exec((err, poll) => {
       if (err) return res.status(500).send(err);
-      console.log(poll.createdBy);
-      // console.log(req.user._id);
       if (!poll.createdBy.equals(req.user._id)) {
         return res.status(403).send({message: 'User is not authorized'})
       }
