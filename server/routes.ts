@@ -14,7 +14,9 @@ export default function setRoutes(app) {
   // polls
   app.route('/api/polls')
     .get(pollsController.list)
-    .post(pollsController.create);
+    .post(usersController.isAuthenticated,
+      pollsController.create
+    );
 
   app.route('/api/polls/:id')
     .get(pollsController.get)

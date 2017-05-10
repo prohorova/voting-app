@@ -1,7 +1,7 @@
 <md-toolbar color="primary">
   <a routerLink="/"><span class="brand" >VotingApp</span></a>
   <button md-button routerLink="/polls">Polls</button>
-  <button md-button routerLink="/create">New poll</button>
+  <button md-button *ngIf="isLoggedIn()" routerLink="/create">New poll</button>
   <span class="fill"></span>
   <button *ngIf="!isLoggedIn()" md-button routerLink="/login">
     Login
