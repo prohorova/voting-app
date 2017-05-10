@@ -29,7 +29,9 @@ export class PollsService {
   }
 
   delete(id) {
-    return this.http.delete(`${config.baseUrl}/api/polls/${id}`);
+    return this.http.delete(`${config.baseUrl}/api/polls/${id}`)
+      .map(res => res.json())
+      .catch(error => Observable.throw(error.json().message || 'An error occurred'));
   }
 
   vote(pollId, option) {

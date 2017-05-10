@@ -44,7 +44,7 @@ setPassport();
 app.use(passport.initialize());
 app.use(passport.session());
 
-app.use(cors());
+// app.use(cors());
 
 db.on('error', console.error.bind(console, 'connection error:'));
 db.once('open', () => {

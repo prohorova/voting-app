@@ -23,11 +23,11 @@
         </md-input-container>
 
       </div>
-      <button type="submit" md-raised-button color="primary"
+      <button type="submit" class="vote-button" md-raised-button color="primary"
               [disabled]="!isValid(voteForm.value)">
         Vote
       </button>
-      <button type="submit" md-raised-button color="primary"
+      <button type="button" class="delete-button" md-raised-button
               *ngIf="canDelete(poll)"
               (click)="delete(poll)">
         Delete

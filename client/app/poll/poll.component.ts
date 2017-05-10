@@ -77,8 +77,13 @@ export class PollComponent implements OnInit, OnDestroy {
     return false;
   }
 
-  delete() {
-
+  delete(poll) {
+    this.polls.delete(poll._id)
+      .subscribe(() => {
+        this.router.navigate(['/polls']);
+      }, (error) => {
+        this.toastr.error(error);
+      });
   }
 
   hasVotes(poll) {
