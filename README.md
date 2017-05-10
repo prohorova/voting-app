@@ -1,7 +1,7 @@
-# Angular Full Stack [![Dependencies](https://david-dm.org/DavideViolante/Angular2-Full-Stack.svg)](https://david-dm.org/DavideViolante/Angular2-Full-Stack) [![Donate](https://img.shields.io/badge/paypal-donate-179BD7.svg)](https://www.paypal.me/dviolante) [![MIT license](http://img.shields.io/badge/license-MIT-lightgrey.svg)](http://opensource.org/licenses/MIT)
+# Voting app
 
 
-The front-end of this project was generated with [Angular CLI](https://github.com/angular/angular-cli).
+This project was bootstrapped with [Angular Full Stack](https://github.com/DavideViolante/Angular-Full-Stack).
 
 This project uses the [MEAN stack](https://en.wikipedia.org/wiki/MEAN_(software_bundle)):
 * [**M**ongoose.js](http://www.mongoosejs.com) ([MongoDB](https://www.mongodb.com)): database
@@ -9,8 +9,7 @@ This project uses the [MEAN stack](https://en.wikipedia.org/wiki/MEAN_(software_
 * [**A**ngular 4](https://angular.io): frontend framework
 * [**N**ode.js](https://nodejs.org): runtime environment
 * [Angular CLI](https://cli.angular.io): project scaffolding
-* [Bootstrap](http://www.getbootstrap.com): layout and styles
-* [Font Awesome](http://fontawesome.io): icons
+* [Angular material 2](https://material.angular.io): layout and styles
 
 ## Prerequisites
 1. Install [Node.js](https://nodejs.org) and [MongoDB](https://www.mongodb.com)
@@ -53,9 +52,6 @@ A window will automatically open at [localhost:4200](http://localhost:4200). Ang
 * you noticed any problem or error
 * you have a question
 
-## To do
-* More tests
-
 ## Running unit tests
 Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
 
@@ -66,10 +62,3 @@ Before running the tests make sure you are serving the app via `npm start`.
 ## Running TSLint
 Run `ng lint` to execute the linter via [TSLint](https://palantir.github.io/tslint/).
 
-## Further help
-To get more help on the `angular-cli` use `ng --help` or go check out the [Angular-CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
-
-To get more help about this project, [visit the wiki](https://github.com/DavideViolante/Angular-Full-Stack/wiki).
-
-### Author
-* [Davide Violante](https://github.com/DavideViolante)
