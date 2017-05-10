@@ -1,25 +1,45 @@
-<div class="container">
-  <h1 class="title">{{poll.title}}</h1>
+<div class="container" *ngIf="poll">
+  <h1 class="title">{{poll.name}}</h1>
 
   <div class="center-container">
-    <div class="poll-wrapper">
+    <form class="poll-wrapper"
+          <!--*ngIf="canVote(poll)"-->
+          [formGroup]="voteForm"
+          (submit)="vote(voteForm.value)">
       <div class="poll">
-        <md-select placeholder="Choose an option">
-          <md-option *ngFor="let option of poll.options" value="option.id">{{option.value}}</md-option>
+        <md-select placeholder="Choose an option"
+                   [formControl]="voteForm.controls['option']">
+          <md-option></md-option>
+          <md-option *ngFor="let option of poll.options" [value]="option._id">
+            {{option.value}}
+          </md-option>
         </md-select>
 
         <span class="own-version">or vote with</span>
 
         <md-input-container>
-          <input mdInput type="text"  placeholder="your own version">
+          <input mdInput type="text"
+                 placeholder="your own version"
+                 [formControl]="voteForm.controls['newOption']">
         </md-input-container>
 
       </div>
-      <button md-raised-button color="primary">Vote</button>
-    </div>
+      <button type="submit" md-raised-button color="primary"
+              [disabled]="!isValid(voteForm.value)">
+        Vote
+      </button>
+      <button type="submit" md-raised-button color="primary"
+              *ngIf="canDelete(poll)"
+              (click)="delete(poll)">
+        Delete
+      </button>
+    </form>
 
-    <div class="chart">
-      <app-chart [data]="poll.options"></app-chart>
+    <!--<p *ngIf="!canVote(poll)" class="voted">You already voted</p>-->
+
+    <div class="chart" *ngIf="hasVotes(poll)">
+      <app-chart [options]="poll.options"></app-chart>
     </div>
+    <div class="no-votes" *ngIf="!hasVotes(poll)">No votes to show statistics yet</div>
   </div>
 </div>

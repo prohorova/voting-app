@@ -1,12 +1,25 @@
 <md-toolbar color="primary">
   <a routerLink="/"><span class="brand" >VotingApp</span></a>
   <button md-button routerLink="/polls">Polls</button>
-  <button md-button routerLink="/edit">New poll</button>
+  <button md-button routerLink="/create">New poll</button>
   <span class="fill"></span>
-  <button md-button [routerLink]="['/login', {loggingIn: true}]">
+  <button *ngIf="!isLoggedIn()" md-button routerLink="/login">
     Login
   </button>
-  <button md-button [routerLink]="['/login', {loggingIn: false}]">
+  <button *ngIf="!isLoggedIn()" md-button routerLink="/register">
     Sign up
   </button>
+  <button *ngIf="isLoggedIn()" md-icon-button [mdMenuTriggerFor]="menu">
+    <md-icon>more_vert</md-icon>
+  </button>
+  <md-menu #menu="mdMenu">
+    <button md-menu-item routerLink="/create">
+      <md-icon>add_circle</md-icon>
+      <span>Create poll</span>
+    </button>
+    <button md-menu-item (click)="logout()">
+      <md-icon>exit_to_app</md-icon>
+      <span>Log out</span>
+    </button>
+  </md-menu>
 </md-toolbar>

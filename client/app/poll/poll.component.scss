@@ -1,5 +1,5 @@
 .poll-wrapper {
-  margin-bottom: 20px;
+  margin-bottom: 40px;
 }
 
 .poll md-select, .own-version {
@@ -23,6 +23,14 @@
 
 .poll-wrapper button {
   width: 100%;
+}
+
+.no-votes, .voted {
+  text-align: center;
+}
+
+.voted {
+  margin-bottom: 40px;
 }
 
 @media (max-width: 768px) {

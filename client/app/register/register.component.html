@@ -1,14 +1,17 @@
 <div class="center-container">
-  <h1 class="title">Login</h1>
+  <h1 class="title">Register</h1>
   <form [formGroup]="userForm" (submit)="submit(userForm.value)">
+    <md-input-container>
+      <input mdInput type="text"  placeholder="Name" [formControl]="userForm.controls['name']">
+    </md-input-container>
     <md-input-container>
       <input mdInput type="email"  placeholder="Email" [formControl]="userForm.controls['email']">
     </md-input-container>
     <md-input-container>
       <input mdInput type="password"  placeholder="Password" [formControl]="userForm.controls['password']">
     </md-input-container>
-    <button type="submit" md-raised-button color="accent" [disabled]="!userForm.valid">Login</button>
-    <button type="button" md-button color="accent" routerLink="/register">Register</button>
+    <button type="submit" md-raised-button color="accent" [disabled]="!userForm.valid">Register</button>
+    <button type="button" md-button color="accent" routerLink="/login">Login</button>
   </form>
 </div>
 

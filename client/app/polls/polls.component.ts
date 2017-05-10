@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewContainerRef } from '@angular/core';
+import { PollsService } from '../core/polls.service';
+import { ToastsManager } from 'ng2-toastr/ng2-toastr';
 
 @Component({
   selector: 'app-polls',
@@ -7,15 +9,20 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PollsComponent implements OnInit {
 
-  polls = [
-    {id: 1, title: 'Poll1', description: 'description'},
-    {id: 1, title: 'Poll1', description: 'description'},
-    {id: 1, title: 'Poll1', description: 'description'}
-  ];
+  pollList;
 
-  constructor() { }
+  constructor(private polls: PollsService,
+              private toastr: ToastsManager,
+              private vcr: ViewContainerRef) {
+    this.toastr.setRootViewContainerRef(vcr);
+  }
 
   ngOnInit() {
+    this.polls.list().subscribe((polls) => {
+      this.pollList = polls;
+    }, (error) => {
+      this.toastr.error(error);
+    })
   }
 
 }

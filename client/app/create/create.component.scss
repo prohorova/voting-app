@@ -1,0 +1,16 @@
+form md-input-container, form > button {
+  width: 100%;
+}
+
+.input-container {
+  display: flex;
+  flex-direction: row;
+}
+
+.add {
+  margin-bottom: 10px;
+}
+
+.remove {
+  color: #d9534f;
+}

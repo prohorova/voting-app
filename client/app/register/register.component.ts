@@ -5,11 +5,11 @@ import { ToastsManager } from 'ng2-toastr/ng2-toastr';
 import { AuthService } from '../core/auth.service';
 
 @Component({
-  selector: 'app-login',
-  templateUrl: './login.component.html',
-  styleUrls: ['./login.component.scss']
+  selector: 'app-register',
+  templateUrl: './register.component.html',
+  styleUrls: ['./register.component.scss']
 })
-export class LoginComponent implements OnInit {
+export class RegisterComponent implements OnInit {
 
   userForm: FormGroup;
 
@@ -23,13 +23,14 @@ export class LoginComponent implements OnInit {
 
   ngOnInit() {
     this.userForm = this.fb.group({
+      name: ['', Validators.required],
       email: ['', Validators.compose([Validators.required, Validators.pattern(/.+\@.+\..+/)])],
       password: ['', Validators.required],
     })
   }
 
   submit(user) {
-    this.auth.submit(true, user).subscribe(() => {
+    this.auth.submit(false, user).subscribe(() => {
       this.router.navigate(['/']);
     }, (error) => {
       this.toastr.error(error);
