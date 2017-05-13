@@ -1,6 +1,8 @@
-const config = {
-  db : 'mongodb://user:123123123@ds161487.mlab.com:61487/voting-app26',
-  sessionSecret: 'sessionsecretkey'
-};
+import devConfig from './env/development';
+import prodConfig from './env/production';
+
+const env = process.env.NODE_ENV || 'development';
+const config = env === 'development' ? devConfig : prodConfig;
 
 export default config;
+
