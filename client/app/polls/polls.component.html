@@ -8,7 +8,8 @@
       </md-card-title>
     </md-card>
     <md-card *ngIf="pollList && !pollList.length">No polls yet. Create a first one!</md-card>
-    <button md-fab mdTooltip="Add new poll" mdTooltipPosition="above" *ngIf="isLoggedIn()"
+    <button md-fab mdTooltip="Add new poll" mdTooltipPosition="above"
+            *ngIf="isLoggedIn() && pollList"
             routerLink="/create">
       +
     </button>
