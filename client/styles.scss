@@ -20,6 +20,14 @@ a {
   flex: 1 1 auto;
 }
 
+.title {
+  text-align: center;
+}
+
+.toast-bottom-right {
+  bottom: 40px;
+}
+
 .container {
   padding: 20px 40px 40px 40px;
 }
@@ -47,15 +55,6 @@ a {
   }
 }
 
-.title {
-  text-align: center;
-}
-
-.toast-bottom-center {
-  bottom: 50px;
-  right: 0;
-  width: 100%;
-}
 
 
 

@@ -11,7 +11,7 @@ import { ToastOptions } from 'ng2-toastr';
 import { ChartComponent } from './chart/chart.component';
 
 export class CustomOption extends ToastOptions {
-  positionClass = 'toast-bottom-center';
+  positionClass = 'toast-bottom-right';
 }
 
 @NgModule({
