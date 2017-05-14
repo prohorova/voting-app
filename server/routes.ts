@@ -23,7 +23,7 @@ export default function setRoutes(app) {
     );
 
   // pollsList
-  app.route('/api/pollsList')
+  app.route('/api/polls')
     .get(pollsController.list)
 
     .post(
@@ -31,17 +31,19 @@ export default function setRoutes(app) {
       pollsController.create
     );
 
-  app.route('/api/pollsList/:id')
-    .get(pollsController.get)
+  app.route('/api/polls/:id')
+    .get(pollsController.getPoll, pollsController.get)
 
     .delete(
       usersController.isAuthenticated,
+      pollsController.getPoll,
       pollsController.canDelete,
       pollsController.delete
     );
 
-  app.route('/api/pollsList/vote/:pollId/')
+  app.route('/api/polls/vote/:id/')
     .post(
+      pollsController.getPoll,
       pollsController.canVote,
       pollsController.vote
     );
