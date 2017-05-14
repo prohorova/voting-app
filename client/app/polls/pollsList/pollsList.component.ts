@@ -1,15 +1,15 @@
 import { Component, OnInit, OnDestroy, ViewContainerRef } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { PollsService } from '../core/polls.service';
-import { AuthService } from '../core/auth.service';
+import { PollsService } from '../../core/polls.service';
+import { AuthService } from '../../core/auth.service';
 import { ToastsManager } from 'ng2-toastr/ng2-toastr';
 
 @Component({
   selector: 'app-polls',
-  templateUrl: './polls.component.html',
-  styleUrls: ['./polls.component.scss']
+  templateUrl: './pollsList.component.html',
+  styleUrls: ['./pollsList.component.scss']
 })
-export class PollsComponent implements OnInit, OnDestroy {
+export class PollsListComponent implements OnInit, OnDestroy {
 
   userId;
   pollList;

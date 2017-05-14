@@ -1,7 +1,6 @@
-<div class="container" *ngIf="poll">
+<div class="center-container" *ngIf="poll">
   <h1 class="title">{{poll.name}}</h1>
 
-  <div class="center-container">
     <form class="poll-wrapper"
           [formGroup]="voteForm"
           (submit)="vote(voteForm.value)">
@@ -40,5 +39,5 @@
       <app-chart [options]="poll.options"></app-chart>
     </div>
     <div class="no-votes" *ngIf="!hasVotes(poll)">No votes to show statistics yet</div>
-  </div>
+
 </div>

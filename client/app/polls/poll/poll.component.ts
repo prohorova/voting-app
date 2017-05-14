@@ -1,8 +1,8 @@
 import { Component, OnInit, OnDestroy, ViewContainerRef } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FormGroup, FormBuilder } from '@angular/forms';
-import { PollsService } from '../core/polls.service';
-import { AuthService } from '../core/auth.service';
+import { PollsService } from '../../core/polls.service';
+import { AuthService } from '../../core/auth.service';
 import { ToastsManager } from 'ng2-toastr/ng2-toastr';
 
 @Component({
@@ -84,7 +84,7 @@ export class PollComponent implements OnInit, OnDestroy {
   delete(poll) {
     this.polls.delete(poll._id)
       .subscribe(() => {
-        this.router.navigate(['/polls']);
+        this.router.navigate(['/pollsList']);
       }, (error) => {
         this.toastr.error(error);
       });

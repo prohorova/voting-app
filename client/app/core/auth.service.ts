@@ -28,4 +28,13 @@ export class AuthService {
     return user && user._id;
   }
 
+  getUserInfo() {
+    const user = JSON.parse(sessionStorage.getItem('user'));
+    return user;
+  }
+
+  changePassword(data) {
+    return this.http.makeRequest(`${config.baseUrl}/api/change-password`, 'post', null, data);
+  }
+
 }

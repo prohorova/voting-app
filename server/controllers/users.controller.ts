@@ -7,7 +7,7 @@ export default class UsersController {
     if (!req.user) {
       passport.authenticate('local', function(err, user, info) {
         if (err) { return next(err); }
-        if (!user) { return res.status(401).send(info); }
+        if (!user) { return res.status(409).send(info); }
         req.logIn(user, function(err) {
           if (err) { return next(err); }
           return res.send({_id: user._id, name: user.name, email: user.email});
@@ -48,7 +48,24 @@ export default class UsersController {
 
   logout = (req, res) => {
     req.logout();
-    return res.send({});
+    return res.send({message: 'User is logged out'});
+  };
+
+  changePassword = (req, res) => {
+    const userId = req.body.userId;
+    const oldPassword = req.body.oldPassword;
+    const newPassword = req.body.newPassword;
+    User.findById(userId, (err, user) => {
+      if (err) return res.status(500).send({message: err.message});
+      if (!user.validPassword(oldPassword)) {
+        return res.status(409).send({message: 'Old password is incorrect'});
+      }
+      user.setPassword(newPassword);
+      user.save((err) => {
+        if (err) return res.status(500).send({message: err.message});
+        return res.send({message: 'Password changed successfully'});
+      })
+    })
   };
 
   isAuthenticated = (req, res, next) => {

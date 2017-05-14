@@ -6,24 +6,27 @@ import { SharedModule } from './shared/shared.module';
 import { CoreModule } from './core/core.module';
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
-import { PollsComponent } from './polls/polls.component';
-import { LoginComponent } from './login/login.component';
+import { PollsListComponent } from './polls/pollsList/pollsList.component';
+import { LoginComponent } from './auth/login/login.component';
 import { NavComponent } from './nav/nav.component';
-import { PollComponent } from './poll/poll.component';
-import { CreateComponent } from './create/create.component';
-import { RegisterComponent } from './register/register.component';
+import { PollComponent } from './polls/poll/poll.component';
+import { CreateComponent } from './polls/create/create.component';
+import { RegisterComponent } from './auth/register/register.component';
+import { ProfileComponent } from './profile/profile.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
-    PollsComponent,
+    PollsListComponent,
     LoginComponent,
     NavComponent,
     PollComponent,
     CreateComponent,
     RegisterComponent,
+    ProfileComponent,
+    ProfileComponent,
   ],
   imports: [
     AppRoutingModule,
