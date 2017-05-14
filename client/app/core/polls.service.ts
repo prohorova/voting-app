@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { CustomHttpService } from './custom-http.service';
-import config from '../shared/config';
+import { environment } from '../../environments/environment';
 
 
 @Injectable()
@@ -9,23 +9,23 @@ export class PollsService {
   constructor(private http: CustomHttpService) { }
 
   list() {
-    return this.http.makeRequest(`${config.baseUrl}/api/polls`, 'get');
+    return this.http.makeRequest(`${environment.baseUrl}/api/polls`, 'get');
   }
 
   get(id) {
-    return this.http.makeRequest(`${config.baseUrl}/api/polls/${id}`, 'get');
+    return this.http.makeRequest(`${environment.baseUrl}/api/polls/${id}`, 'get');
   }
 
   create(poll) {
-    return this.http.makeRequest(`${config.baseUrl}/api/polls`, 'post', null, poll);
+    return this.http.makeRequest(`${environment.baseUrl}/api/polls`, 'post', null, poll);
   }
 
   delete(id) {
-    return this.http.makeRequest(`${config.baseUrl}/api/polls/${id}`, 'delete');
+    return this.http.makeRequest(`${environment.baseUrl}/api/polls/${id}`, 'delete');
   }
 
   vote(pollId, option) {
-    return this.http.makeRequest(`${config.baseUrl}/api/polls/vote/${pollId}`,
+    return this.http.makeRequest(`${environment.baseUrl}/api/polls/vote/${pollId}`,
       'post', null, option);
   }
 

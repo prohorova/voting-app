@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { CustomHttpService } from './custom-http.service';
-import config from '../shared/config';
+import { environment } from '../../environments/environment';
 
 @Injectable()
 export class AuthService {
@@ -9,7 +9,7 @@ export class AuthService {
 
   submit(loggingIn, user) {
     const action = loggingIn ? 'login' : 'register';
-    const url = `${config.baseUrl}/api/${action}`;
+    const url = `${environment.baseUrl}/api/${action}`;
     return this.http.makeRequest(url, 'post', null, user)
       .map(user => sessionStorage.setItem('user', JSON.stringify(user)));
   }
@@ -20,7 +20,7 @@ export class AuthService {
 
   logout() {
     sessionStorage.removeItem('user');
-    return this.http.makeRequest(`${config.baseUrl}/api/logout`, 'get');
+    return this.http.makeRequest(`${environment.baseUrl}/api/logout`, 'get');
   }
 
   getUserId() {
@@ -34,7 +34,7 @@ export class AuthService {
   }
 
   changePassword(data) {
-    return this.http.makeRequest(`${config.baseUrl}/api/change-password`, 'post', null, data);
+    return this.http.makeRequest(`${environment.baseUrl}/api/change-password`, 'post', null, data);
   }
 
 }
