@@ -1,22 +1,17 @@
 import { Injectable } from '@angular/core';
-import { Http } from '@angular/http';
+import { CustomHttpService } from './custom-http.service';
 import config from '../shared/config';
-import { Observable } from 'rxjs/Observable';
-import 'rxjs/add/operator/catch';
-import 'rxjs/add/operator/map';
 
 @Injectable()
 export class AuthService {
 
-  constructor(private http: Http) { }
+  constructor(private http: CustomHttpService) {}
 
   submit(loggingIn, user) {
     const action = loggingIn ? 'login' : 'register';
     const url = `${config.baseUrl}/api/${action}`;
-    return this.http.post(url, user)
-      .map(res => res.json())
-      .map(user => sessionStorage.setItem('user', JSON.stringify(user)))
-      .catch(error => Observable.throw(error.json().message || 'An error occurred'))
+    return this.http.makeRequest(url, 'post', null, user)
+      .map(user => sessionStorage.setItem('user', JSON.stringify(user)));
   }
 
   isLoggedIn() {
@@ -25,7 +20,7 @@ export class AuthService {
 
   logout() {
     sessionStorage.removeItem('user');
-    return this.http.get(`${config.baseUrl}/api/logout`);
+    return this.http.makeRequest(`${config.baseUrl}/api/logout`, 'get');
   }
 
   getUserId() {

@@ -1,43 +1,32 @@
 import { Injectable } from '@angular/core';
-import { Http } from '@angular/http';
+import { CustomHttpService } from './custom-http.service';
 import config from '../shared/config';
-import { Observable } from "rxjs/Observable";
-import 'rxjs/add/operator/catch';
-import 'rxjs/add/operator/map';
+
 
 @Injectable()
 export class PollsService {
 
-  constructor(private http: Http) { }
+  constructor(private http: CustomHttpService) { }
 
   list() {
-    return this.http.get(`${config.baseUrl}/api/polls`)
-      .map(res => res.json())
-      .catch(error => Observable.throw(error.json().message || 'An error occurred'));
+    return this.http.makeRequest(`${config.baseUrl}/api/polls`, 'get');
   }
 
   get(id) {
-    return this.http.get(`${config.baseUrl}/api/polls/${id}`)
-      .map(res => res.json())
-      .catch(error => Observable.throw(error.json().message || 'An error occurred'));
+    return this.http.makeRequest(`${config.baseUrl}/api/polls/${id}`, 'get');
   }
 
   create(poll) {
-    return this.http.post(`${config.baseUrl}/api/polls`, poll)
-      .map(res => res.json())
-      .catch(error => Observable.throw(error.json().message || 'An error occurred'));
+    return this.http.makeRequest(`${config.baseUrl}/api/polls`, 'post', null, poll);
   }
 
   delete(id) {
-    return this.http.delete(`${config.baseUrl}/api/polls/${id}`)
-      .map(res => res.json())
-      .catch(error => Observable.throw(error.json().message || 'An error occurred'));
+    return this.http.makeRequest(`${config.baseUrl}/api/polls/${id}`, 'delete');
   }
 
   vote(pollId, option) {
-    return this.http.post(`${config.baseUrl}/api/polls/vote/${pollId}`, option)
-      .map(res => res.json())
-      .catch(error => Observable.throw(error.json().message || 'An error occurred'));
+    return this.http.makeRequest(`${config.baseUrl}/api/polls/vote/${pollId}`,
+      'post', null, option);
   }
 
 }

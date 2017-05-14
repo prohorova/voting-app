@@ -20,7 +20,8 @@ export default function setRoutes(app) {
 
   app.route('/api/polls/:id')
     .get(pollsController.get)
-    .delete(pollsController.canDelete,
+    .delete(usersController.isAuthenticated,
+      pollsController.canDelete,
       pollsController.delete
     );
 

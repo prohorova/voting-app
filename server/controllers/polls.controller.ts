@@ -71,7 +71,6 @@ export default class PollsController {
   };
 
   canDelete = (req, res, next) => {
-    if (!req.user) return res.status(403).send({message: 'User is not authorized'});
     Poll.findById(req.params.id).exec((err, poll) => {
       if (err) return res.status(500).send(err);
       if (!poll.createdBy.equals(req.user._id)) {

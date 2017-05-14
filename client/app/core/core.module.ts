@@ -6,6 +6,7 @@ import { AuthService } from './auth.service';
 import { PollsService } from './polls.service';
 import { AuthGuardService } from './auth-guard.service';
 import { UnauthGuardService } from './unauth-guard.service';
+import { CustomHttpService } from './custom-http.service';
 
 @NgModule({
   imports: [
@@ -17,7 +18,8 @@ import { UnauthGuardService } from './unauth-guard.service';
     AuthService,
     PollsService,
     AuthGuardService,
-    UnauthGuardService
+    UnauthGuardService,
+    CustomHttpService
   ]
 })
 export class CoreModule { }

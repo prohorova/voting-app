@@ -14,7 +14,7 @@ export default class UsersController {
         });
       })(req, res, next);
     } else {
-      res.status(403).send();
+      res.status(403).send({message: 'Forbidden'});
     }
   };
 
@@ -42,18 +42,18 @@ export default class UsersController {
         })
       });
     } else {
-      return res.status(403).send();
+      return res.status(403).send({message: 'Forbidden'});
     }
   };
 
   logout = (req, res) => {
     req.logout();
-    return res.send();
+    return res.send({});
   };
 
   isAuthenticated = (req, res, next) => {
-    if (!req.user) {
-      return res.status(403).send({message: 'User is not logged in'});
+    if (!req.isAuthenticated()) {
+      return res.status(401).send({message: 'User is not logged in'});
     }
     next();
   }
