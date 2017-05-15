@@ -12,7 +12,7 @@ export default class PollsController {
   };
 
   canVote = (req, res, next) => {
-    let ip = req.connection.remoteAddress.split(':').pop();
+    let ip = req.headers['x-forwarded-for'] || req.connection.remoteAddress;
     let userVoted;
     let ipVoted;
 
@@ -78,7 +78,8 @@ export default class PollsController {
     if (req.user) {
       poll.users.push(req.user._id);
     }
-    poll.ips.push(req.connection.remoteAddress.split(':').pop());
+    console.log(req.headers);
+    poll.ips.push(req.headers['x-forwarded-for'] || req.connection.remoteAddress);
     poll.save((err) => {
       if (err) return res.status(500).send(err);
       return res.send(poll);
