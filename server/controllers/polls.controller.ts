@@ -78,7 +78,6 @@ export default class PollsController {
     if (req.user) {
       poll.users.push(req.user._id);
     }
-    console.log(req.headers);
     poll.ips.push(req.headers['x-forwarded-for'] || req.connection.remoteAddress);
     poll.save((err) => {
       if (err) return res.status(500).send(err);
