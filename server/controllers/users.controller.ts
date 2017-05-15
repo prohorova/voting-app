@@ -15,18 +15,16 @@ export default class UsersController {
   };
 
   register = (req, res) => {
-    const name = req.body.name;
-    const email = req.body.email;
-    const password = req.body.password;
-    User.findOne({email}, (err, user) => {
+    const newUser = new User(req.body);
+    if (newUser.password.length < 6) {
+      return res.status(400).send({message: 'Password should be at least 6 characters long'})
+    }
+    User.findOne({email: newUser.email}, (err, user) => {
       if (err) return res.status(500).send(err);
       if (user) {
         return res.status(409).send({message: 'User with this email already exists'});
       }
-
-      const newUser = new User({name, email});
-      newUser.setPassword(password);
-      newUser.provider = 'local';
+      newUser.setPassword(newUser.password);
       newUser.save((err) => {
         if (err) return res.status(500).send(err);
 
@@ -47,6 +45,10 @@ export default class UsersController {
     const userId = req.body.userId;
     const oldPassword = req.body.oldPassword;
     const newPassword = req.body.newPassword;
+    if (newPassword.length < 6) {
+      return res.status(400)
+        .send({message: 'New password should be at least 6 characters long'})
+    }
     User.findById(userId, (err, user) => {
       if (err) return res.status(500).send({message: err.message});
       if (!user.validPassword(oldPassword)) {

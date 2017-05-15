@@ -14,10 +14,7 @@ const UserSchema = new Schema({
   },
   password: {
     type: String,
-    required: 'Password is required',
-    validate: [(password) => {
-      return password && password.length > 6
-    }, 'Password should be at least 6 characters']
+    required: 'Password is required'
   },
   salt: String
 });
