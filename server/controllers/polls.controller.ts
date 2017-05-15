@@ -12,17 +12,24 @@ export default class PollsController {
   };
 
   canVote = (req, res, next) => {
+    let ip = req.connection.remoteAddress.split(':').pop();
+    let userVoted;
+    let ipVoted;
+
     if (req.user) {
-      const alreadyVoted = req.poll.users.some((user => {
+      userVoted = req.poll.users.some(user => {
         return user.equals(req.user.id);
-      }));
-      if (alreadyVoted) {
-        return res.status(403).send({message: 'You already voted'});
-      }
-      return next();
+      });
     } else {
-      return next();
+      userVoted = false;
     }
+
+    ipVoted = req.poll.ips.indexOf(ip) !== -1;
+
+    if (userVoted || ipVoted) {
+      return res.status(403).send({message: 'You already voted'});
+    }
+    return next();
   };
 
   canDelete = (req, res, next) => {
@@ -71,6 +78,7 @@ export default class PollsController {
     if (req.user) {
       poll.users.push(req.user._id);
     }
+    poll.ips.push(req.connection.remoteAddress.split(':').pop());
     poll.save((err) => {
       if (err) return res.status(500).send(err);
       return res.send(poll);

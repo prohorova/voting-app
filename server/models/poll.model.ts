@@ -11,7 +11,8 @@ const PollSchema = new Schema({
   name: String,
   createdBy: {type: Schema.Types.ObjectId, ref: 'User'},
   options: [OptionSchema],
-  users: [{type: Schema.Types.ObjectId, ref: 'User'}]  // users who voted in this poll
+  users: [{type: Schema.Types.ObjectId, ref: 'User'}],  // authenticated users who voted in this poll
+  ips: [{type: String}] // ips of users who voted in this poll
 });
 
 const Poll = mongoose.model('Poll', PollSchema);
