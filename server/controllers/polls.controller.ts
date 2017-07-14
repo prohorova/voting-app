@@ -4,6 +4,7 @@ export default class PollsController {
 
   create = (req, res) => {
     let poll = new Poll(req.body);
+
     poll.createdBy = req.user;
     poll.save((err) => {
       if (err) return res.status(500).send(err);
@@ -16,13 +17,9 @@ export default class PollsController {
     let userVoted;
     let ipVoted;
 
-    if (req.user) {
-      userVoted = req.poll.users.some(user => {
-        return user.equals(req.user.id);
-      });
-    } else {
-      userVoted = false;
-    }
+    userVoted = req.user && req.poll.users.some(user => {
+      return user.equals(req.user.id);
+    });
 
     ipVoted = req.poll.ips.indexOf(ip) !== -1;
 
@@ -67,13 +64,13 @@ export default class PollsController {
   };
 
   vote = (req, res) => {
-    const option = req.body,
+    const { id, value} = req.body,
       poll = req.poll;
-    if (option.id) {
-      const optionToVote = poll.options.id(option.id);
+    if (id) {
+      const optionToVote = poll.options.id(id);
       optionToVote.votes++;
     } else {
-      poll.options.push({value: option.value, votes: 1});
+      poll.options.push({value, votes: 1});
     }
     if (req.user) {
       poll.users.push(req.user._id);

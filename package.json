@@ -40,6 +40,7 @@
     "passport": "^0.3.2",
     "passport-local": "^1.0.0",
     "rxjs": "^5.1.0",
+    "validator": "^8.0.0",
     "zone.js": "^0.8.4"
   },
   "devDependencies": {
