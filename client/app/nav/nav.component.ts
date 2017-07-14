@@ -22,7 +22,7 @@ export class NavComponent implements OnInit {
   logout() {
     this.auth.logout().subscribe(() => {
       this.router.navigate(['/']);
-    })
+    });
   }
 
   getUserId() {

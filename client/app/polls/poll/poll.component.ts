@@ -36,7 +36,7 @@ export class PollComponent implements OnInit, OnDestroy {
         this.poll = poll;
       }, (error) => {
         this.toastr.error(error);
-      })
+      });
     });
 
     this.voteForm = this.fb.group({
@@ -58,22 +58,18 @@ export class PollComponent implements OnInit, OnDestroy {
       } else if (this.voteForm.controls['option'].disabled) {
         this.voteForm.get('option').enable();
       }
-    })
+    });
   }
 
   ngOnDestroy() {
     this.subscription.unsubscribe();
   }
 
-  // canVote(poll) {
-  //   const userId = this.auth.getUserId();
-  //   if (userId) return !(this.poll.users.indexOf(userId) > -1);
-  //   return true;
-  // }
-
   canDelete(poll) {
     const userId = this.auth.getUserId();
-    if (userId) return poll.createdBy === userId;
+    if (userId) {
+      return poll.createdBy === userId;
+    }
     return false;
   }
 
@@ -93,7 +89,7 @@ export class PollComponent implements OnInit, OnDestroy {
   hasVotes(poll) {
     return poll && poll.options && poll.options.reduce((sum, option) => {
       return sum + option.votes;
-    }, 0)
+    }, 0);
   }
 
   vote(vote) {
@@ -109,7 +105,7 @@ export class PollComponent implements OnInit, OnDestroy {
       this.toastr.info('Your vote has been counted');
     }, (error) => {
       this.toastr.error(error);
-    })
+    });
   }
 
   isValid(vote) {

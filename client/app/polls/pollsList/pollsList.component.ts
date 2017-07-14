@@ -30,13 +30,13 @@ export class PollsListComponent implements OnInit, OnDestroy {
         if (this.userId) {
           this.pollList = polls.filter(poll => {
             return poll.createdBy._id === this.userId;
-          })
+          });
         } else {
           this.pollList = polls;
         }
       }, (error) => {
         this.toastr.error(error);
-      })
+      });
     });
   }
 

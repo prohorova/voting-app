@@ -25,7 +25,7 @@ export class CreateComponent implements OnInit {
     this.pollForm = this.fb.group({
       name: ['', Validators.required],
       options: this.fb.array([this.initOption(), this.initOption()])
-    })
+    });
   }
 
   addOption() {
@@ -34,7 +34,7 @@ export class CreateComponent implements OnInit {
   }
 
   getOptionName(i) {
-    return `Option ${i+1}`;
+    return `Option ${i + 1}`;
   }
 
   initOption() {
@@ -49,11 +49,11 @@ export class CreateComponent implements OnInit {
   }
 
   submit(poll) {
-    this.polls.create(poll).subscribe((poll: any) => {
-      this.router.navigate([`/polls/${poll._id}`]);
+    this.polls.create(poll).subscribe((data: any) => {
+      this.router.navigate([`/polls/${data._id}`]);
     }, (error) => {
       this.toastr.error(error);
-    })
+    });
   }
 
 }

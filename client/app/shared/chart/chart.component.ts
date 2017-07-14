@@ -50,7 +50,7 @@ export class ChartComponent implements OnInit, AfterViewInit, OnChanges {
 
     const pie = d3.pie()
       .sort(null)
-      .value(function(d: any) { return d.votes });
+      .value((d: any) => d.votes);
 
     const path = d3.arc()
       .outerRadius(0)
@@ -80,7 +80,7 @@ export class ChartComponent implements OnInit, AfterViewInit, OnChanges {
 
     const legendGroup = legendWrapper.selectAll('g').data(this.options).enter().append('g')
       .attr('height', legendHeight)
-      .attr('transform', function(d, i) { return 'translate(0,' + legendHeight * i + ')'; });
+      .attr('transform', (d, i) => 'translate(0,' + legendHeight * i + ')');
 
     legendGroup.append('rect')
       .attr('width', legendSide)
@@ -94,7 +94,7 @@ export class ChartComponent implements OnInit, AfterViewInit, OnChanges {
       .attr('text-anchor', 'start')
       .attr('dy', '5')
       .style('font-size', 12)
-      .text(function(d) { return d.value + ' ' + '(' + d.votes + ')'; });
+      .text((d) => d.value + ' ' + '(' + d.votes + ')');
 
   }
 

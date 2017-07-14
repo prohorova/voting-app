@@ -11,7 +11,7 @@ export class AuthService {
     const action = loggingIn ? 'login' : 'register';
     const url = `${environment.baseUrl}/api/${action}`;
     return this.http.makeRequest(url, 'post', null, user)
-      .map(user => sessionStorage.setItem('user', JSON.stringify(user)));
+      .map(data => sessionStorage.setItem('user', JSON.stringify(data)));
   }
 
   isLoggedIn() {
