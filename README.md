@@ -1,9 +1,12 @@
 # Voting app
 
+Project for [FCC](https://www.freecodecamp.org/challenges/build-a-voting-app)
 
-This project was bootstrapped with [Angular Full Stack](https://github.com/DavideViolante/Angular-Full-Stack).
+[Demo](https://voting-space.herokuapp.com/)
 
-This project uses the [MEAN stack](https://en.wikipedia.org/wiki/MEAN_(software_bundle)):
+Built based on [Angular Full Stack](https://github.com/DavideViolante/Angular-Full-Stack).
+
+Uses the [MEAN stack](https://en.wikipedia.org/wiki/MEAN_(software_bundle)):
 * [**M**ongoose.js](http://www.mongoosejs.com) ([MongoDB](https://www.mongodb.com)): database
 * [**E**xpress.js](http://expressjs.com): backend framework
 * [**A**ngular 4](https://angular.io): frontend framework
