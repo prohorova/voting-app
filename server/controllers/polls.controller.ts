@@ -57,7 +57,7 @@ export default class PollsController {
   };
 
   list = (req, res) => {
-    Poll.find({}).populate('createdBy', 'name').exec((err, polls) => {
+    Poll.find({}).limit(parseInt(req.query.limit || 100)).populate('createdBy', 'name').exec((err, polls) => {
       if (err) return res.status(500).send(err);
       res.send(polls);
     })
