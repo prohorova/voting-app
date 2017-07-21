@@ -1,26 +1,26 @@
 <div class="home">
-  <h1 color="accent">VotingSpace</h1>
-  <h2>Create and take polls</h2>
-  <button md-raised-button color="accent" routerLink="/polls">View polls</button>
-  <p *ngIf="!isLoggedIn()">Or <a routerLink="/login">log in</a> to create your own poll</p>
-  <p *ngIf="isLoggedIn()">Or <a routerLink="/create">create</a> a new poll</p>
+  <div class="home-content">
+    <h1 color="accent">VotingSpace</h1>
+    <h2>Create and take polls</h2>
+    <button md-raised-button color="accent" routerLink="/polls">View polls</button>
+    <p *ngIf="!isLoggedIn()">Or <a routerLink="/login">log in</a> to create your own poll</p>
+    <p *ngIf="isLoggedIn()">Or <a routerLink="/create">create</a> a new poll</p>
+  </div>
 </div>
-<div class="main">
-  <div class="columns">
-    <div class="column">
-      <md-icon color="primary">done_all</md-icon>
-      <h3>Take polls</h3>
-      <p>You can view and take polls created by other users</p>
-    </div>
-    <div class="column">
-      <md-icon color="primary">add_circle_outline</md-icon>
-      <h3>Create polls</h3>
-      <p>You can create your own customisable polls</p>
-    </div>
-    <div class="column">
-      <md-icon color="primary">sort</md-icon>
-      <h3>Statistics</h3>
-      <p>We provide statistics in form of graphs for all polls</p>
-    </div>
+<div class="columns">
+  <div class="column">
+    <md-icon color="primary">done_all</md-icon>
+    <h3>Take polls</h3>
+    <p>You can view and take polls created by other users</p>
+  </div>
+  <div class="column">
+    <md-icon color="primary">add_circle_outline</md-icon>
+    <h3>Create polls</h3>
+    <p>You can create your own customisable polls</p>
+  </div>
+  <div class="column">
+    <md-icon color="primary">sort</md-icon>
+    <h3>Statistics</h3>
+    <p>We provide statistics in form of graphs for all polls</p>
   </div>
 </div>

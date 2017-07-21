@@ -1,10 +1,21 @@
+:host {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+}
+
 .home {
   background: url('../../assets/images/quiz_sb.jpg');
   background-size: cover;
   color: #fff;
-  padding: 80px 0;
+  display: flex;
+  flex: 1;
   text-align: center;
-  width: 100%;
+}
+
+.home-content {
+  padding: 20px;
+  margin: auto;
 }
 
 .home h1 {

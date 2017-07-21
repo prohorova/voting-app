@@ -3,13 +3,15 @@
 html, body {
   margin: 0;
   padding: 0;
-  height: 100%;
 }
 
 body {
   background: #eee;
+  display: flex;
+  flex-direction: column;
   font-family: Roboto, "Helvetica Neue", sans-serif;
   overflow-x: hidden;
+  min-height: 100vh;
 }
 
 a {
@@ -55,6 +57,26 @@ a {
   }
 }
 
+// loader
+
+.loader {
+  animation: rotate 0.8s infinite linear;
+  border: 8px solid #ff4081;
+  border-right-color: transparent;
+  border-radius: 50%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin-top: -50px;
+  margin-left: -50px;
+  height: 100px;
+  width: 100px;
+}
+
+@keyframes rotate {
+  0%    { transform: rotate(0deg); }
+  100%  { transform: rotate(360deg); }
+}
 
 
 

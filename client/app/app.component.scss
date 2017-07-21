@@ -1,12 +1,19 @@
-md-content{
+:host {
   display: flex;
+  flex: 1;
   flex-direction: column;
-  height: 100%;
 }
 
 .main {
+  display: flex;
   flex: 1;
-  padding-bottom: 20px;
+  flex-direction: column;
+}
+
+.root {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
 }
 
 footer {
