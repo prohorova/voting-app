@@ -8,9 +8,18 @@ const OptionSchema = new Schema({
 });
 
 const PollSchema = new Schema({
-  name: String,
+  name: {
+    type: String,
+    required: 'Poll name is required'
+  },
   createdBy: {type: Schema.Types.ObjectId, ref: 'User'},
-  options: [OptionSchema],
+  options: {
+    type: [OptionSchema],
+    required: 'Poll should have at least 2 options',
+    validate: [function(val) {
+      return val.length >= 2
+    }, 'Poll should have at least 2 options']
+  },
   users: [{type: Schema.Types.ObjectId, ref: 'User'}],  // authenticated users who voted in this poll
   ips: [{type: String}] // ips of users who voted in this poll
 });

@@ -48,9 +48,11 @@ db.once('open', () => {
     res.sendFile(path.join(__dirname, '../public/index.html'));
   });
 
-  app.listen(app.get('port'), () => {
-    console.log('Server listening on port ' + app.get('port'));
-  });
+  if (!module.parent) {
+    app.listen(app.get('port'), () => {
+      console.log('Server listening on port ' + app.get('port'));
+    });
+  }
 
 });
 

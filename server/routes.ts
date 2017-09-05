@@ -7,22 +7,16 @@ export default function setRoutes(app) {
   const usersController = new UsersController();
 
   // auth
-  app.route('/api/login')
-    .post(usersController.login);
+  app.post('/api/login', usersController.login);
 
-  app.route('/api/register')
-    .post(usersController.register);
+  app.post('/api/register', usersController.register);
 
-  app.route('/api/logout')
-    .get(usersController.logout);
+  app.get('/api/logout', usersController.logout);
 
-  app.route('/api/change-password')
-    .post(
-      usersController.isAuthenticated,
-      usersController.changePassword
-    );
+  app.post('/api/change-password', usersController.isAuthenticated, usersController.changePassword);
 
-  // pollsList
+  // polls
+
   app.route('/api/polls')
     .get(pollsController.list)
 

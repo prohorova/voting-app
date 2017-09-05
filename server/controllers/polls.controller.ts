@@ -13,6 +13,12 @@ export default class PollsController {
   };
 
   canVote = (req, res, next) => {
+    const { id, value} = req.body;
+
+    if (value && !req.isAuthenticated()) {
+      return res.status(403).send({message: 'User is not authorized'});
+    }
+
     let ip = req.headers['x-forwarded-for'] || req.connection.remoteAddress;
     let userVoted;
     let ipVoted;

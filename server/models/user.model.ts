@@ -1,5 +1,5 @@
 import * as mongoose from 'mongoose';
-import * as crypto from 'crypto';
+import * as bcrypt from 'bcrypt';
 const Schema = mongoose.Schema;
 
 const UserSchema = new Schema({
@@ -15,18 +15,15 @@ const UserSchema = new Schema({
   password: {
     type: String,
     required: 'Password is required'
-  },
-  salt: String
+  }
 });
 
-UserSchema.methods.setPassword = function(password){
-  this.salt = crypto.randomBytes(16).toString('hex');
-  this.password = crypto.pbkdf2Sync(password, this.salt, 1000, 64, 'sha512').toString('hex');
+UserSchema.methods.hashPassword = function(password) {
+  this.password = bcrypt.hashSync(password, bcrypt.genSaltSync(8));
 };
 
 UserSchema.methods.validPassword = function(password) {
-  const hashPassword = crypto.pbkdf2Sync(password, this.salt, 1000, 64, 'sha512').toString('hex');
-  return this.password === hashPassword;
+  return bcrypt.compareSync(password, this.password);
 };
 
 const User = mongoose.model('User', UserSchema);
