@@ -25,6 +25,8 @@ export class ChartComponent implements OnInit, AfterViewInit, OnChanges {
   }
 
   initChart() {
+    if (!this.options) return;
+
     const el = this.chartContainer.nativeElement;
 
     const width = el.offsetWidth,
